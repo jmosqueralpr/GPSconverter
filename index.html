@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversión de Coordenadas y Mapa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>Conversión de Coordenadas</h1>
+        <h3>Javier Mosquera</h3>
+        <form id="coordinateForm">
+            <label for="formato">Formato de Entrada:</label>
+            <!-- Cuando cambio la selección, se actualiza el placeholder -->
+            <select id="formato" name="formato" onchange="updatePlaceholders()">
+                <option value="DD">Decimales (DD) - Google Maps</option>
+                <option value="DMS">Grados, minutos y segundos (DMS) - AIS MTU</option>
+                <option value="DMM">Grados y minutos decimales (DMM) - AIS Kanaton</option>
+            </select>
+
+            <label for="latitud">Latitud:</label>
+            <input type="text" id="latitud" name="latitud" placeholder="Ej: 41.40338">
+
+            <label for="hemisferioLat">Hemisferio (Latitud):</label>
+            <select id="hemisferioLat" name="hemisferioLat">
+                <option value="N">Norte</option>
+                <option value="S" selected>Sur</option>
+            </select>
+
+            <label for="longitud">Longitud:</label>
+            <input type="text" id="longitud" name="longitud" placeholder="Ej: 2.17403">
+
+            <label for="hemisferioLng">Hemisferio (Longitud):</label>
+            <select id="hemisferioLng" name="hemisferioLng">
+                <option value="E">Este</option>
+                <option value="W" selected>Oeste</option>
+            </select>
+            <!-- Click sobre el boton, ejecución de función de convertir coordenadas -->
+            <button type="button" onclick="convertCoordinates()">Convertir</button>
+        </form>
+
+        <div id="resultados">
+            <h2>Resultados:</h2>
+            <p id="dd"></p>
+            <p id="dms"></p>
+            <p id="dmm"></p>
+            <p id="utm"></p>
+            <p id="ups"></p>
+            <p id="mgrs"></p>
+            <p id="geohash"></p>
+            <p id="olc"></p>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <footer>
+        <p>Javier Mosquera</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
